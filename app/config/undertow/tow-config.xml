@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 6.0//EN"
+        "http://aspectran.github.io/dtd/aspectran-6.dtd">
+<aspectran>
+
+    <description>
+        An Aspectran configuration for Undertow Server.
+    </description>
+
+    <environment>
+        <properties>
+            <item name="tow.startup" value="true" valueType="boolean"/>
+            <item name="tow.server.port" value="8080" valueType="int"/>
+            <item name="tow.server.host" value="0.0.0.0"/>
+        </properties>
+    </environment>
+
+    <bean id="tow.server" class="com.aspectran.undertow.server.TowServer">
+        <properties>
+            <item name="autoStart">%{tow.startup}</item>
+            <item name="listeners" type="array">
+                <value>#{tow.listener}</value>
+            </item>
+            <item name="handler">#{tow.aspectranHttpHandler}</item>
+        </properties>
+    </bean>
+
+    <bean id="tow.listener" class="io.undertow.Undertow$ListenerBuilder" scope="prototype">
+        <properties>
+            <item name="type">#{field:io.undertow.Undertow$ListenerType^HTTP}</item>
+            <item name="port" valueType="int">%{tow.server.port}</item>
+            <item name="host">%{tow.server.host}</item>
+        </properties>
+    </bean>
+
+    <bean id="tow.aspectranHttpHandler" class="com.aspectran.undertow.server.AspectranHttpHandler" scope="prototype"/>
+
+</aspectran>
