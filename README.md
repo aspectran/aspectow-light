@@ -1,21 +1,20 @@
-aspectran-jpetstore
+aspectran-aspectow
 ===================
 
-JPetStore is a full web application built on top of Aspectran and MyBatis 3.  
-This is another implementation of MyBatis sample application (https://github.com/mybatis/jpetstore-6).
+Aspectow is a web application server on top of Aspectran 6, Undertow.
 
-## Running JPetStore under Aspectran Shell
+## Running Aspectow under Aspectran Shell
 
 - Clone this repository
 
   ```bash
-  $ git clone https://github.com/aspectran/aspectran-jpetstore.git
+  $ git clone https://github.com/aspectran/aspectran-aspectow.git
   ```
 
 - Build with Maven
 
   ```bash
-  $ cd aspectran-jpetstore
+  $ cd aspectran-aspectow
   $ mvn clean package
   ```
 
@@ -27,8 +26,3 @@ This is another implementation of MyBatis sample application (https://github.com
   ```
 
 - Access in your browser at http://localhost:8080
-
-  ```
-  Username: j2ee  
-  Password: j2ee
-  ```
