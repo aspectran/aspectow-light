@@ -9,15 +9,15 @@
 
     <environment>
         <properties>
-            <item name="tow.startup" value="true" valueType="boolean"/>
-            <item name="tow.server.port" value="8080" valueType="int"/>
-            <item name="tow.server.host" value="0.0.0.0"/>
+            <item name="tow.server.startup" valueType="boolean">true</item>
+            <item name="tow.server.port" valueType="int">8080</item>
+            <item name="tow.server.host">0.0.0.0</item>
         </properties>
     </environment>
 
     <bean id="tow.server" class="com.aspectran.undertow.server.TowServer">
         <properties>
-            <item name="autoStart">%{tow.startup}</item>
+            <item name="autoStart">%{tow.server.startup}</item>
             <item name="listeners" type="array">
                 <value>#{tow.listener}</value>
             </item>
@@ -33,6 +33,10 @@
         </properties>
     </bean>
 
-    <bean id="tow.aspectranHttpHandler" class="com.aspectran.undertow.server.AspectranHttpHandler" scope="prototype"/>
+    <bean id="tow.aspectranHttpHandler" class="com.aspectran.undertow.server.handler.DefaultAspectranHttpHandler" scope="prototype">
+        <properties>
+            <item name="resourceBase">/webapps/default/assets</item>
+        </properties>
+    </bean>
 
 </aspectran>

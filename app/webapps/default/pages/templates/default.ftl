@@ -4,10 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta name="google" content="notranslate">
-    <#if page.title?has_content>
-    <title>${page.title}</title>
-    </#if>
-    <meta name="description" content="${(page.description)!}" />
+    <title>${page.title!"Aspectran Demo Site"}</title>
+    <meta name="description" content="${page.description!"Welcome to Aspectran Demo"}" />
     <link rel="stylesheet" type="text/css" href="http://www.aspectran.com/assets/css/styles_aspectran.css" />
     <link href="http://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
     <script src="http://www.aspectran.com/assets/js/modernizr.js"></script>
