@@ -21,7 +21,7 @@
             <item name="listeners" type="array">
                 <value>#{tow.listener}</value>
             </item>
-            <item name="handler">#{tow.aspectranHttpHandler}</item>
+            <item name="handler">#{tow.defaultHttpHandler}</item>
         </properties>
     </bean>
 
@@ -33,7 +33,7 @@
         </properties>
     </bean>
 
-    <bean id="tow.aspectranHttpHandler" class="com.aspectran.undertow.server.handler.DefaultAspectranHttpHandler" scope="prototype">
+    <bean id="tow.defaultHttpHandler" class="com.aspectran.undertow.server.handlers.http.DefaultHttpHandler" scope="prototype">
         <properties>
             <item name="resourceBase">/webapps/default/assets</item>
         </properties>
