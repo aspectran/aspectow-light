@@ -33,14 +33,14 @@
         </properties>
     </bean>
 
-    <bean id="tow.defaultHttpHandler" class="com.aspectran.undertow.server.handlers.http.DefaultHttpHandler" scope="prototype">
+    <bean id="tow.defaultHttpHandler" class="com.aspectran.undertow.server.http.DefaultHttpHandler" scope="prototype">
         <properties>
             <item name="towSessionManager">#{tow.sessionManger}</item>
             <item name="resourceBase">/webapps/default/assets</item>
         </properties>
     </bean>
 
-    <bean id="tow.sessionManger" class="com.aspectran.undertow.server.session.TowSessionManager" scope="prototype">
+    <bean id="tow.sessionManger" class="com.aspectran.undertow.server.http.session.HttpSessionManager" scope="prototype">
         <properties>
             <item name="sessionConfig">
                 <bean class="com.aspectran.core.context.config.SessionConfig">
@@ -58,7 +58,7 @@
                 </bean>
             </item>
             <item name="sessionCookieConfig">
-                <bean class="com.aspectran.undertow.server.session.SessionCookieConfig"/>
+                <bean class="com.aspectran.undertow.server.http.session.SessionCookieConfig"/>
             </item>
         </properties>
     </bean>
