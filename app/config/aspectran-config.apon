@@ -57,6 +57,11 @@ shell: {
         com.aspectran.shell.command.builtins.QuitCommand
     ]
     session: {
+        workerName: node0
+        maxSessions: 999
+        maxIdleSeconds: 1800
+        evictionIdleSeconds: 900
+        scavengingIntervalSeconds: 600
         storeType: file
         fileStore: {
             storeDir: /temp/sessions/shell

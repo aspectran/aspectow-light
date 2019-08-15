@@ -10,8 +10,8 @@
     <environment>
         <properties>
             <item name="tow.server.startup" valueType="boolean">true</item>
-            <item name="tow.server.listener1.port" valueType="int">8080</item>
-            <item name="tow.server.listener1.host">0.0.0.0</item>
+            <item name="tow.server.listener-1.port" valueType="int">8080</item>
+            <item name="tow.server.listener-1.host">0.0.0.0</item>
         </properties>
     </environment>
 
@@ -23,8 +23,8 @@
                     <bean class="io.undertow.Undertow$ListenerBuilder">
                         <properties>
                             <item name="type">#{field:io.undertow.Undertow$ListenerType^HTTP}</item>
-                            <item name="port" valueType="int">%{tow.server.listener1.port}</item>
-                            <item name="host">%{tow.server.listener1.host}</item>
+                            <item name="port" valueType="int">%{tow.server.listener-1.port}</item>
+                            <item name="host">%{tow.server.listener-1.host}</item>
                         </properties>
                     </bean>
                 </value>
@@ -34,11 +34,34 @@
     </bean>
 
     <bean id="tow.defaultHttpHandler" class="com.aspectran.undertow.server.http.DefaultHttpHandler">
+        <arguments>
+            <item>#{tow.defaultResourceManager}</item>
+        </arguments>
         <properties>
-            <item name="resourceBase">/webapps/default/assets</item>
+            <item name="staticResourceHandler">#{tow.staticResourceHandler}</item>
             <item name="sessionManager">#{tow.sessionManger}</item>
             <item name="sessionConfig">
                 <bean class="io.undertow.server.session.SessionCookieConfig"/>
+            </item>
+        </properties>
+    </bean>
+
+    <bean id="tow.defaultResourceManager" class="com.aspectran.undertow.server.resource.TowResourceManager">
+        <properties>
+            <item name="base">/webapps/root</item>
+        </properties>
+    </bean>
+
+    <bean id="tow.staticResourceHandler" class="com.aspectran.undertow.server.resource.StaticResourceHandler">
+        <arguments>
+            <item>#{tow.defaultResourceManager}</item>
+        </arguments>
+        <properties>
+            <item name="staticResourcePaths" type="array">
+                <value>/assets/**</value>
+                <value>/css/**</value>
+                <value>/images/**</value>
+                <value>/**/*.html</value>
             </item>
         </properties>
     </bean>
@@ -49,13 +72,17 @@
                 <bean class="com.aspectran.core.context.config.SessionManagerConfig">
                     <arguments>
                         <item>
-                            timeout: 1800
-                            maxSessions: 100000
+                            workerName: node0
+                            maxSessions: 99999
+                            maxIdleSeconds: 1800
+                            evictionIdleSeconds: 900
+                            scavengingIntervalSeconds: 600
                             storeType: file
                             fileStore: {
                                 storeDir: /temp/sessions/tow
                                 deleteUnrestorableFiles: true
                             }
+                            startup: true
                         </item>
                     </arguments>
                 </bean>
