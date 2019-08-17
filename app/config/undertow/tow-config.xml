@@ -57,7 +57,7 @@
             <item>#{tow.defaultResourceManager}</item>
         </arguments>
         <properties>
-            <item name="staticResourcePaths" type="array">
+            <item name="resourceLocations" type="array">
                 <value>/assets/**</value>
                 <value>/css/**</value>
                 <value>/images/**</value>
