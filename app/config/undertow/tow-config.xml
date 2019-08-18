@@ -29,16 +29,52 @@
                     </bean>
                 </value>
             </item>
-            <item name="handler">#{tow.defaultHttpHandler}</item>
+            <item name="handler">#{tow.accessLogHandler}</item>
         </properties>
     </bean>
 
-    <bean id="tow.defaultHttpHandler" class="com.aspectran.undertow.server.http.DefaultHttpHandler">
+    <bean id="tow.accessLogHandler" class="com.aspectran.undertow.server.accesslog.AccessLogHandlerFactoryBean">
+        <properties>
+            <item name="handler">#{tow.encodingHandler}</item>
+            <item name="formatString">combined</item>
+            <item name="category">io.undertow.accesslog</item>
+        </properties>
+    </bean>
+
+    <bean id="tow.encodingHandler" class="com.aspectran.undertow.server.encoding.EncodingHandlerFactoryBean">
+        <properties>
+            <item name="handler">#{tow.httpHandler}</item>
+            <item name="contentEncodingProviders" type="array">
+                <value>gzip</value>
+                <value>deflate</value>
+            </item>
+        </properties>
+    </bean>
+
+    <bean id="tow.httpHandler" class="com.aspectran.undertow.server.http.DefaultHttpHandler">
         <arguments>
-            <item>#{tow.defaultResourceManager}</item>
+            <item>#{tow.resourceManager}</item>
         </arguments>
         <properties>
-            <item name="staticResourceHandler">#{tow.staticResourceHandler}</item>
+            <item name="staticResourceHandler">
+                <bean class="com.aspectran.undertow.server.resource.StaticResourceHandler" initMethod="autoDetect">
+                    <arguments>
+                        <item>#{tow.resourceManager}</item>
+                    </arguments>
+                    <properties>
+                        <item name="resourcePathPatterns">
+                            <bean class="com.aspectran.undertow.server.resource.ResourcePathPatterns">
+                                <arguments>
+                                    <item>
+                                        +: /assets/**
+                                        -: /assets/aaa.bbb
+                                    </item>
+                                </arguments>
+                            </bean>
+                        </item>
+                    </properties>
+                </bean>
+            </item>
             <item name="sessionManager">#{tow.sessionManger}</item>
             <item name="sessionConfig">
                 <bean class="io.undertow.server.session.SessionCookieConfig"/>
@@ -46,23 +82,9 @@
         </properties>
     </bean>
 
-    <bean id="tow.defaultResourceManager" class="com.aspectran.undertow.server.resource.TowResourceManager">
+    <bean id="tow.resourceManager" class="com.aspectran.undertow.server.resource.TowResourceManager">
         <properties>
             <item name="base">/webapps/root</item>
-        </properties>
-    </bean>
-
-    <bean id="tow.staticResourceHandler" class="com.aspectran.undertow.server.resource.StaticResourceHandler">
-        <arguments>
-            <item>#{tow.defaultResourceManager}</item>
-        </arguments>
-        <properties>
-            <item name="resourceLocations" type="array">
-                <value>/assets/**</value>
-                <value>/css/**</value>
-                <value>/images/**</value>
-                <value>/**/*.html</value>
-            </item>
         </properties>
     </bean>
 
