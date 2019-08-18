@@ -19,4 +19,10 @@
         <dispatch name="templates/default"/>
     </translet>
 
+    <translet name="/echo">
+        <transform type="text">
+            <template>${msg}</template>
+        </transform>
+    </translet>
+
 </aspectran>

@@ -29,6 +29,14 @@
                     </bean>
                 </value>
             </item>
+            <item name="serverOptions">
+                <bean class="com.aspectran.undertow.server.TowServerOptions">
+                    <properties>
+                        <item name="decodeUrl" valueType="boolean">true</item>
+                        <item name="urlCharset">UTF-8</item>
+                    </properties>
+                </bean>
+            </item>
             <item name="handler">#{tow.accessLogHandler}</item>
         </properties>
     </bean>
@@ -48,6 +56,7 @@
                 <value>gzip</value>
                 <value>deflate</value>
             </item>
+            <item name="maxContentSize" valueType="long">1024</item>
         </properties>
     </bean>
 
@@ -66,8 +75,8 @@
                             <bean class="com.aspectran.undertow.server.resource.ResourcePathPatterns">
                                 <arguments>
                                     <item>
-                                        +: /assets/**
-                                        -: /assets/aaa.bbb
+                                        +: /favicon.ico
+                                        +: /hel lo.txt
                                     </item>
                                 </arguments>
                             </bean>
