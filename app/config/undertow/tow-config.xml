@@ -87,7 +87,8 @@
         </properties>
     </bean>
 
-    <bean id="tow.staticResourceManager" class="com.aspectran.undertow.server.resource.StaticResourceHandler" initMethod="autoDetect" scope="prototype">
+    <bean id="tow.staticResourceManager" class="com.aspectran.undertow.server.resource.StaticResourceHandler"
+          initMethod="autoDetect" scope="prototype">
         <arguments>
             <item>#{tow.resourceManager}</item>
         </arguments>
@@ -97,6 +98,7 @@
                     <arguments>
                         <item>
                             +: /favicon.ico
+                            +: /robots.txt
                         </item>
                     </arguments>
                 </bean>
