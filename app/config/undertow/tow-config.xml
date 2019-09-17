@@ -80,7 +80,7 @@
             <item>#{tow.resourceManager}</item>
         </arguments>
         <properties>
-            <item name="staticResourceHandler">#{tow.staticResourceManager}</item>
+            <item name="staticResourceHandler">#{tow.staticResourceHandler}</item>
             <item name="sessionManager">#{tow.sessionManger}</item>
             <item name="sessionConfig">
                 <bean class="io.undertow.server.session.SessionCookieConfig"/>
@@ -94,7 +94,7 @@
         </properties>
     </bean>
 
-    <bean id="tow.staticResourceManager" class="com.aspectran.undertow.server.resource.StaticResourceHandler"
+    <bean id="tow.staticResourceHandler" class="com.aspectran.undertow.server.resource.StaticResourceHandler"
           initMethod="autoDetect" scope="prototype">
         <arguments>
             <item>#{tow.resourceManager}</item>
