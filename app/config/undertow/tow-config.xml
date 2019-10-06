@@ -41,49 +41,12 @@
                     </properties>
                 </bean>
             </item>
-            <item name="handler">#{tow.accessLogHandler}</item>
-        </properties>
-    </bean>
-
-    <bean id="tow.accessLogHandler" class="com.aspectran.undertow.server.accesslog.AccessLogHandlerFactoryBean">
-        <properties>
-            <item name="handler">#{tow.encodingHandler}</item>
-            <item name="formatString">combined</item>
-            <item name="category">io.undertow.accesslog</item>
-        </properties>
-    </bean>
-
-    <bean id="tow.encodingHandler" class="com.aspectran.undertow.server.encoding.EncodingHandlerFactoryBean">
-        <properties>
-            <item name="handler">#{tow.httpHandler}</item>
-            <item name="contentEncodingProviders" type="array">
-                <value>gzip</value>
-                <value>deflate</value>
-            </item>
-            <item name="maxContentSize" valueType="long">2048</item>
-            <item name="mediaTypes" type="array">
-                <value>text/html</value>
-                <value>text/xml</value>
-                <value>text/plain</value>
-                <value>text/css</value>
-                <value>text/javascript</value>
-                <value>application/javascript</value>
-                <value>application/json</value>
-                <value>application/xml</value>
-                <value>application/apon</value>
-            </item>
-        </properties>
-    </bean>
-
-    <bean id="tow.httpHandler" class="com.aspectran.undertow.server.http.DefaultHttpHandler">
-        <arguments>
-            <item>#{tow.resourceManager}</item>
-        </arguments>
-        <properties>
-            <item name="staticResourceHandler">#{tow.staticResourceHandler}</item>
-            <item name="sessionManager">#{tow.sessionManger}</item>
-            <item name="sessionConfig">
-                <bean class="io.undertow.server.session.SessionCookieConfig"/>
+            <item name="handler">
+                <bean class="io.undertow.server.handlers.GracefulShutdownHandler">
+                    <arguments>
+                        <item>#{tow.hybridHttpHandler}</item>
+                    </arguments>
+                </bean>
             </item>
         </properties>
     </bean>
@@ -91,6 +54,22 @@
     <bean id="tow.resourceManager" class="com.aspectran.undertow.server.resource.TowResourceManager" scope="prototype">
         <properties>
             <item name="base">/webapps/root</item>
+        </properties>
+    </bean>
+
+    <bean id="tow.hybridHttpHandler" class="com.aspectran.undertow.server.http.HybridHttpHandlerFactoryBean" scope="prototype">
+        <properties>
+            <item name="towServer">#{tow.server}</item>
+            <item name="resourceManager">#{tow.resourceManager}</item>
+            <item name="staticResourceHandler">#{tow.staticResourceHandler}</item>
+            <item name="sessionManager">#{tow.sessionManger}</item>
+            <item name="sessionConfig">
+                <bean class="io.undertow.server.session.SessionCookieConfig"/>
+            </item>
+            <item name="outerHandlerChainWrappers" type="array">
+                <value>#{tow.encodingHandlerWrapper}</value>
+                <value>#{tow.accessLogHandlerWrapper}</value>
+            </item>
         </properties>
     </bean>
 
@@ -114,7 +93,7 @@
         </properties>
     </bean>
 
-    <bean id="tow.sessionManger" class="com.aspectran.undertow.server.session.TowSessionManager">
+    <bean id="tow.sessionManger" class="com.aspectran.undertow.server.session.TowSessionManager" scope="prototype">
         <properties>
             <item name="sessionManagerConfig">
                 <bean class="com.aspectran.core.context.config.SessionManagerConfig">
@@ -135,6 +114,36 @@
                     </arguments>
                 </bean>
             </item>
+        </properties>
+    </bean>
+
+    <bean id="tow.encodingHandlerWrapper" class="com.aspectran.undertow.server.encoding.EncodingHandlerWrapper"
+          scope="prototype">
+        <properties>
+            <item name="contentEncodingProviders" type="array">
+                <value>gzip</value>
+                <value>deflate</value>
+            </item>
+            <item name="maxContentSize" valueType="long">32</item>
+            <item name="mediaTypes" type="array">
+                <value>text/html</value>
+                <value>text/xml</value>
+                <value>text/plain</value>
+                <value>text/css</value>
+                <value>text/javascript</value>
+                <value>application/javascript</value>
+                <value>application/json</value>
+                <value>application/xml</value>
+                <value>application/apon</value>
+            </item>
+        </properties>
+    </bean>
+
+    <bean id="tow.accessLogHandlerWrapper" class="com.aspectran.undertow.server.accesslog.AccessLogHandlerWrapper"
+          scope="prototype">
+        <properties>
+            <item name="formatString">combined</item>
+            <item name="category">io.undertow.accesslog</item>
         </properties>
     </bean>
 
