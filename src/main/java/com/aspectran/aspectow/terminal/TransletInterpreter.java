@@ -15,7 +15,6 @@
  */
 package com.aspectran.aspectow.terminal;
 
-import com.aspectran.core.activity.Activity;
 import com.aspectran.core.activity.ActivityException;
 import com.aspectran.core.activity.InstantActivity;
 import com.aspectran.core.activity.Translet;
