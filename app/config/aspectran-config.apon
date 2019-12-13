@@ -63,10 +63,9 @@ shell: {
         maxIdleSeconds: 1800
         evictionIdleSeconds: 900
         scavengingIntervalSeconds: 600
-        storeType: file
+        removeUnloadableSessions: true
         fileStore: {
             storeDir: /temp/sessions/shell
-            deleteUnrestorableFiles: true
         }
         startup: true
     }
