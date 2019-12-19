@@ -28,6 +28,7 @@ import com.aspectran.core.component.bean.aware.ActivityContextAware;
 import com.aspectran.core.context.ActivityContext;
 import com.aspectran.core.context.expr.token.Token;
 import com.aspectran.core.context.expr.token.TokenParser;
+import com.aspectran.core.context.rule.DescriptionRule;
 import com.aspectran.core.context.rule.ItemRule;
 import com.aspectran.core.context.rule.ItemRuleMap;
 import com.aspectran.core.context.rule.TransletRule;
@@ -54,8 +55,6 @@ public class TransletInterpreter implements ActivityContextAware {
 
     private final Log log = LogFactory.getLog(TransletInterpreter.class);
 
-    private static final String COMMAND_PREFIX = "/terminal/";
-
     private ActivityContext context;
 
     @Override
@@ -71,11 +70,10 @@ public class TransletInterpreter implements ActivityContextAware {
             return;
         }
 
-        String transletFullName = COMMAND_PREFIX + transletName;
-        TransletRule transletRule = context.getTransletRuleRegistry().getTransletRule(transletFullName);
+        TransletRule transletRule = context.getTransletRuleRegistry().getTransletRule(transletName);
         if (transletRule == null) {
             if (log.isDebugEnabled()) {
-                log.debug("Translet not found: " + transletFullName);
+                log.debug("Translet not found: " + transletName);
             }
 
             JsonWriter jsonWriter = new JsonWriter(translet.getResponseAdapter().getWriter());
@@ -96,7 +94,15 @@ public class TransletInterpreter implements ActivityContextAware {
         JsonWriter jsonWriter = new JsonWriter(translet.getResponseAdapter().getWriter());
         jsonWriter.beginObject();
         jsonWriter.writeName("translet");
-        jsonWriter.write(toMap(transletRule));
+        jsonWriter.beginObject();
+        jsonWriter.writeName("name");
+        jsonWriter.write(transletRule.getName());
+        if (transletRule.getDescriptionRule() != null) {
+            String description = DescriptionRule.render(transletRule.getDescriptionRule(), context.getCurrentActivity());
+            jsonWriter.writeName("description");
+            jsonWriter.write(description);
+        }
+        jsonWriter.endObject();
         jsonWriter.writeName("request");
         jsonWriter.beginObject();
         if (parameterItemRuleMap != null) {
@@ -143,8 +149,7 @@ public class TransletInterpreter implements ActivityContextAware {
     }
 
     private void performActivity(String transletName) throws ActivityException {
-        String transletFullName = COMMAND_PREFIX + transletName;
-        TransletRule transletRule = context.getTransletRuleRegistry().getTransletRule(transletFullName);
+        TransletRule transletRule = context.getTransletRuleRegistry().getTransletRule(transletName);
         if (transletRule == null) {
             throw new TransletNotFoundException(transletName, MethodType.GET);
         }
@@ -155,13 +160,6 @@ public class TransletInterpreter implements ActivityContextAware {
         activity.setResponseAdapter(context.getCurrentActivity().getResponseAdapter());
         activity.prepare(transletName, transletRule);
         activity.perform();
-    }
-
-    private Map<String, String> toMap(TransletRule transletRule) {
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("name", transletRule.getName());
-        map.put("description", transletRule.getDescription());
-        return map;
     }
 
     private List<Map<String, Object>> toListForTokens(Collection<ItemRule> itemRules) {
