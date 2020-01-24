@@ -6,7 +6,7 @@
     <meta name="google" content="notranslate">
     <title>${page.title!"Aspectran Demo Site"}</title>
     <meta name="description" content="${page.description!"Welcome to Aspectran Demo"}" />
-    <link rel="stylesheet" type="text/css" href="https://aspectran.com/assets/css/styles_aspectran.css" />
+    <link rel="stylesheet" type="text/css" href="https://aspectran.com/assets/css/aspectran.css" />
     <link href="http://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
     <script src="https://aspectran.com/assets/js/modernizr-custom.js"></script>
     <script src="https://aspectran.com/assets/js/jquery.js"></script>
@@ -56,7 +56,7 @@
         <div class="title-bar-center">
             <a href="#top-of-page">Aspectran</a>
         </div>
-        <div class="title-bar-right" data-toggle>
+        <div class="title-bar-right" data-toggle="gnb-menu">
             <a class="menu-icon" title="Menu"></a>
         </div>
     </div>
