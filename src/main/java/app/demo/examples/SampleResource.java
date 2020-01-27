@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aspectran.aspectow.examples;
+package app.demo.examples;
 
 import com.aspectran.core.activity.Translet;
 

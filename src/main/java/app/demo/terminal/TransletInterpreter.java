@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aspectran.aspectow.terminal;
+package app.demo.terminal;
 
 import com.aspectran.core.activity.ActivityException;
 import com.aspectran.core.activity.InstantActivity;

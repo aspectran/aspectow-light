@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aspectran.aspectow.examples.upload;
+package app.demo.examples.upload;
 
 import com.aspectran.core.activity.Translet;
 import com.aspectran.core.activity.request.FileParameter;

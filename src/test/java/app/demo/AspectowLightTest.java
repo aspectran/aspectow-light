@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aspectran.aspectow;
+package app.demo;
 
 import com.aspectran.core.util.ResourceUtils;
 import com.aspectran.shell.AspectranShell;
@@ -28,7 +28,7 @@ import java.io.IOException;
  *
  * <p>Created: 2017. 11. 19.</p>
  */
-public class AspectowTest {
+public class AspectowLightTest {
 
     public static void main(String[] args) {
         try {

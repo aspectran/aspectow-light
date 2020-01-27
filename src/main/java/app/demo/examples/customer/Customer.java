@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aspectran.aspectow.examples.customer;
+package app.demo.examples.customer;
 
 import com.aspectran.core.util.apon.AbstractParameters;
 import com.aspectran.core.util.apon.ParameterKey;
@@ -28,28 +28,28 @@ public class Customer extends AbstractParameters {
     public static final ParameterKey name;
     public static final ParameterKey age;
     public static final ParameterKey approved;
-    
+
     private static final ParameterKey[] parameterKeys;
-    
+
     static {
         id = new ParameterKey("id", ValueType.INT);
         name = new ParameterKey("name", ValueType.STRING);
         age = new ParameterKey("age", ValueType.INT);
         approved = new ParameterKey("approved", ValueType.BOOLEAN);
-        
+
         parameterKeys = new ParameterKey[] {
-            id,
-            name,
-            age,
-            approved
+                id,
+                name,
+                age,
+                approved
         };
     }
-    
+
     /**
      * Instantiates a new customer.
      */
     public Customer() {
         super(parameterKeys);
     }
-    
+
 }

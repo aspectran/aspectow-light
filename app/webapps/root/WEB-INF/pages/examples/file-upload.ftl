@@ -66,32 +66,34 @@
     margin: 0;
   }
 </style>
-<div class="t50 b20">
-  <form id="fileupload" action="https://jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
-    <label for="fileAdds" class="button fileinput-button">Add files...</label>
-    <input type="file" name="file" id="fileAdds" class="show-for-sr" multiple>
-    <div id="files" class="files">Drop files here to upload</div>
-  </form>
-  <br>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Demo Notes</h3>
+<div class="grid-x grid-padding-x">
+  <div class="cell contour">
+    <div class="t30 b20">
+      <form id="fileupload" action="https://jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+        <label for="fileAdds" class="button fileinput-button">Add files...</label>
+        <input type="file" name="file" id="fileAdds" class="show-for-sr" multiple>
+        <div id="files" class="files">Drop files here to upload</div>
+      </form>
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Demo Notes</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>The maximum file size for uploads in this demo is <strong>3MB</strong>.</li>
+            <li>Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this demo.</li>
+            <li>Up to 30 files will be stored in the memory, and older files will be deleted.</li>
+            <li>You can <strong>drag &amp; drop</strong> files from your desktop on this webpage (see <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support">Browser support</a>).</li>
+            <li>Please refer to the <a href="https://github.com/blueimp/jQuery-File-Upload">project website</a> and <a href="https://github.com/blueimp/jQuery-File-Upload/wiki">documentation</a> for more information about jQuery File Upload Plugin.</li>
+            <li>Built with the <a href="https://foundation.zurb.com/">Foundation</a> CSS framework.</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="panel-body">
+    <h2>Recently Uploaded Files</h2>
+    <div class="files">
       <ul>
-        <li>The maximum file size for uploads in this demo is <strong>3MB</strong>.</li>
-        <li>Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this demo.</li>
-        <li>Up to 30 files will be stored in the memory, and older files will be deleted.</li>
-        <li>You can <strong>drag &amp; drop</strong> files from your desktop on this webpage (see <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support">Browser support</a>).</li>
-        <li>Please refer to the <a href="https://github.com/blueimp/jQuery-File-Upload">project website</a> and <a href="https://github.com/blueimp/jQuery-File-Upload/wiki">documentation</a> for more information about jQuery File Upload Plugin.</li>
-        <li>Built with the <a href="https://foundation.zurb.com/">Foundation</a> CSS framework.</li>
-      </ul>
-    </div>
-  </div>
-</div>
-<h2>Recently Uploaded Files</h2>
-<div class="files">
-  <ul>
     <#list files as file>
     <li>
       <a href="${file.url}" target="_blank"><img src="${file.url}"/></a>
@@ -101,7 +103,9 @@
       </div>
     </li>
     </#list>
-  </ul>
+      </ul>
+    </div>
+  </div>
 </div>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="/assets/js/vendor/jquery.ui.widget.js"></script>

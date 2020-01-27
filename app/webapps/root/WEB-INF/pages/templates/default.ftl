@@ -7,7 +7,7 @@
     <title>${page.title!"Aspectran Demo Site"}</title>
     <meta name="description" content="${page.description!"Welcome to Aspectran Demo"}" />
     <link rel="stylesheet" type="text/css" href="https://aspectran.com/assets/css/aspectran.css" />
-    <link href="http://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
     <script src="https://aspectran.com/assets/js/modernizr-custom.js"></script>
     <script src="https://aspectran.com/assets/js/jquery.js"></script>
     <script src="https://aspectran.com/assets/js/fastclick.js"></script>
@@ -47,7 +47,7 @@
         ga('send', 'pageview');
     </script>
 </head>
-<body id="top-of-page" class="article" itemscope itemtype="http://schema.org/WebPage">
+<body id="top-of-page" class="${(page.style)!}" itemscope itemtype="http://schema.org/WebPage">
 <nav id="navigation" class="no-js">
     <div class="title-bar" data-responsive-toggle="gnb-menu" data-hide-for="large" style="display:none">
         <div class="title-bar-left">
@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="top-bar" id="gnb-menu" style="display:none">
-        <div class="row">
+        <div class="grid-container ${(page.style)!}">
             <div class="top-bar-logo">
                 <div class="circle">
                     <a class="logo" href="/" title="Aspectran"><img src="https://aspectran.com/assets/img/aspectran-site-logo.png" alt="Aspectran"/></a>
@@ -83,9 +83,7 @@
                 </ul>
             </div>
             <div class="top-bar-right">
-                <ul class="dropdown menu" data-dropdown-menu data-close-on-click-inside="false">
-                </ul>
-                <div class="quick-search-box show-for-large">
+                <div class="quick-search-box">
                     <form name="google_quick_search">
                         <div class="input-group">
                             <input class="input-group-field" type="text" name="keyword" placeholder="Search">
@@ -97,20 +95,8 @@
                 </div>
             </div>
         </div>
-        <div class="row quick-search-box hide-for-large">
-            <div class="small-12 columns">
-                <form name="google_quick_search">
-                    <div class="input-group">
-                        <input class="input-group-field" type="text" name="keyword" placeholder="Search">
-                        <div class="input-group-button">
-                            <button type="submit" class="button">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="breadcrumbs-bar" style="display:none" data-hide-for="medium down">
-            <div class="row">
+            <div class="grid-container ${(page.style)!}">
                 <nav role="navigation" aria-label="You are here:">
                     <ul class="breadcrumbs" itemprop="breadcrumb">
                         <li><a href="https://aspectran.com/">Aspectran</a></li>
@@ -123,27 +109,29 @@
 </nav>
 <section itemscope itemtype="http://schema.org/Article">
     <div id="masthead">
-        <div class="row">
-            <div class="small-12 columns">
-                <header>
-                    <p class="subheadline" itemprop="alternativeHeadline">${(page.subheadline)!}</p>
-                    <h1 itemprop="headline">${(page.headline)!}</h1>
-                    <p class="teaser" itemprop="description">
-                        ${(page.teaser)!}
-                    </p>
-                </header>
-                <div class="hexagons">
-                    <div class="hexagon hex1"></div>
-                    <div class="hexagon hex2"></div>
-                    <div class="hexagon hex3"></div>
-                    <div class="hexagon hex4"></div>
-                    <div class="hexagon hex5"></div>
-                    <div class="hexagon hex6"></div>
+        <div class="grid-container ${(page.style)!}">
+            <div class="grid-x">
+                <div class="cell">
+                    <header>
+                        <p class="subheadline" itemprop="alternativeHeadline">${(page.subheadline)!}</p>
+                        <h1 itemprop="headline">${(page.headline)!}</h1>
+                        <p class="teaser" itemprop="description">
+                            ${(page.teaser)!}
+                        </p>
+                    </header>
+                    <div class="hexagons">
+                        <div class="hexagon hex1"></div>
+                        <div class="hexagon hex2"></div>
+                        <div class="hexagon hex3"></div>
+                        <div class="hexagon hex4"></div>
+                        <div class="hexagon hex5"></div>
+                        <div class="hexagon hex6"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row breadcrumbs-bar">
-            <div class="columns">
+        <div class="grid-container grid-x breadcrumbs-bar ${(page.style)!}">
+            <div class="cell">
                 <nav role="navigation" aria-label="You are here:">
                     <ul class="breadcrumbs" itemprop="breadcrumb">
                         <li><a href="https://aspectran.com/">Aspectran</a></li>
@@ -153,78 +141,54 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="large-12 columns">
-            <#include "/${page.include}.ftl">
-        </div>
+    <div class="grid-container ${(page.style)!}">
+        <#include "/${page.include}.ftl">
     </div>
 </section>
-<div id="up-to-top" class="row">
-    <div class="small-12 columns" style="text-align: right;">
-        <a class="iconfont" href="#top-of-page">&#xf108;</a>
-    </div><!-- /.small-12.columns -->
-</div><!-- /.row -->
+<div class="grid-container ${(page.style)!}">
+    <div id="up-to-top" class="grid-x">
+        <div class="small-12 cell" style="text-align: right;">
+            <a class="iconfont" href="#top-of-page">&#xf108;</a>
+        </div>
+    </div>
+</div>
 <footer id="footer-content">
     <div id="footer">
-        <div class="row">
-            <div class="medium-2 large-1 columns hide-for-small-only t5">
-                <h5><a class="logo" href="https://aspectran.com/info/" title="Aspectran"><img src="https://aspectran.com/assets/img/aspectran-logo-grey-x100.png" width="100" height="100" title="Aspectran"/></a></h5>
-            </div>
-            <div class="medium-4 large-4 columns">
-                <a href="https://aspectran.com/info/"><h5>About Aspectran</h5></a>
-                <p>
-                    <a href="https://aspectran.com/info/">Aspectran is a Java framework for building Web and command-line applications.</a>
-                </p>
-            </div>
-            <div class="small-6 medium-3 large-3 large-offset-1 columns">
-                <h5>Navigation</h5>
-                <ul class="no-bullet">
-                    <li class="">
-                        <a href="https://aspectran.com/getting-started/" title="">Getting-Started</a>
-                    </li>
-                    <li class="">
-                        <a href="https://aspectran.com/docs/" title="">Documentation</a>
-                    </li>
-                    <li class="" >
-                        <a href="https://aspectran.com/guides/" title="">Guides</a>
-                    </li>
-                    <li class="" >
-                        <a href="https://aspectran.com/projects/" title="">Projects</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="small-6 medium-3 large-3 columns">
-                <h5>Services</h5>
-                <ul class="no-bullet">
-                    <li>
-                        <a href="https://aspectran.com/support/" title="Aspectran Support">Support</a>
-                    </li>
-                    <li>
-                        <a href="https://aspectran.com/feed.xml" title="Subscribe to RSS Feed">RSS</a>
-                    </li>
-                    <li>
-                        <a href="https://aspectran.com/atom.xml" title="Subscribe to Atom Feed">Atom</a>
-                    </li>
-                    <li>
-                        <a href="https://aspectran.com/sitemap.xml"  title="Sitemap for Google Webmaster Tools">sitemap.xml</a>
-                    </li>
-                </ul>
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                <div class="medium-2 large-1 cell hide-for-small-only t5">
+                    <h5><a class="logo" href="https://aspectran.com/aspectran/about/" title="Aspectran"><img src="https://aspectran.com/assets/img/aspectran-logo-grey-x100.png" width="100" height="100" alt="Aspectran" title="Aspectran"/></a></h5>
+                </div>
+                <div class="medium-4 large-4 cell">
+                    <a href="https://aspectran.com/aspectran/about/"><h5>About Aspectran</h5></a>
+                    <p><a href="https://aspectran.com/aspectran/about/">Aspectran is a Java framework for building Web and command-line applications.</a></p>
+                </div>
+                <div class="small-6 medium-3 large-3 large-offset-1 cell">
+                    <h5>Get Involved</h5>
+                    <ul class="no-bullet">
+                        <li class="icon-github"><a href="https://github.com/aspectran" target="_blank" title="" class="external">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="small-6 medium-3 large-3 cell">
+                    <h5>Support</h5>
+                    <ul class="no-bullet">
+                        <li><a href="https://aspectran.com/support/faq/" title="FAQ">FAQ</a></li>
+                        <li> <a href="https://aspectran.com/support/contact/" title="Contact">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
     <div id="subfooter">
-        <nav class="row b30">
-            <section id="subfooter-left" class="medium-6 columns credits">
-                <p>© 2008–2019 The Aspectran Project. All rights reserved.</p>
-            </section>
-            <section id="subfooter-right" class="medium-6 columns social-icons">
-                <ul>
-                    <li><a href="http://github.com/topframe" target="_blank" class="icon-github" title="Code and more ..."></a></li>
-                    <li><a href="http://twitter.com/aspectran" target="_blank" class="icon-twitter" title="Always the latest news from aspectran there on Twitter"></a></li>
-                    <li><a href="http://www.facebook.com/aspectran" target="_blank" class="icon-facebook" title="Let's be friends!"></a></li>
-                </ul>
-            </section>
-        </nav>
+        <div class="grid-container">
+            <nav class="grid-x b30">
+                <section id="subfooter-left" class="medium-6 cell credits">
+                    <p>Copyright © 2008-2020 The Aspectran Project</p>
+                </section>
+                <section id="subfooter-right" class="medium-6 cell social-icons">
+                </section>
+            </nav>
+        </div>
     </div>
 </footer>
 <script src="https://aspectran.com/assets/js/foundation.min.js"></script>
@@ -313,11 +277,11 @@
 <script>
     $(document).ready(function() {
         $(".lazy-sticky").each(function() {
-            let $win = $(window);
-            let $this = $(this);
-            let upToTopHeight = $("#up-to-top").height() + 30 + 60;
+            const $win = $(window);
+            const $this = $(this);
+            const baseOffsetTop = $this.offset().top;
+            const upToTopHeight = $("#up-to-top").height() + 30 + 60;
             let footerHeight = $("#footer-content").height() + upToTopHeight;
-            let baseOffsetTop = $this.offset().top;
             let offsetTop = 0;
             let thisHeight = $this.height();
             let winHeight = $win.height();
@@ -358,8 +322,7 @@
                     let topBarHeight = $("#navigation.fixed .top-bar").height()||0;
                     if (immediate || (scrollTop > baseOffsetTop + topBarHeight + offsetTop + thisHeight - 20) ||
                         (scrollTop < baseOffsetTop + topBarHeight + offsetTop)) {
-                        let tocOffsetLeftBase = $this.offset().left;
-                        if (tocOffsetLeftBase > 100) {
+                        if ($this.offset().left >= 15 && $this.width() < 500) {
                             if (scrollTimer) {
                                 clearInterval(scrollTimer);
                                 scrollTimer = null;
@@ -370,7 +333,7 @@
                                 if (scrollTop < baseOffsetTop + topBarHeight) {
                                     scrollTop = 0;
                                 } else {
-                                    scrollTop = scrollTop - baseOffsetTop + topBarHeight + 10;
+                                    scrollTop = scrollTop - baseOffsetTop + topBarHeight + 30;
                                 }
                                 if (scrollTop > $(document).height() - footerHeight - thisHeight - baseOffsetTop + topBarHeight) {
                                     scrollTop = $(document).height() - footerHeight - thisHeight - baseOffsetTop + topBarHeight;
@@ -394,8 +357,7 @@
                 }
             });
             $win.resize(function() {
-                let tocOffsetLeftBase = $this.offset().left;
-                if (tocOffsetLeftBase <= 100) {
+                if ($this.offset().left < 15 || $this.width() >= 500) {
                     clearInterval(scrollTimer);
                     $this.css("top", 0);
                 } else {

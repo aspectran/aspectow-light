@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aspectran.aspectow.examples.customer;
+package app.demo.examples.customer;
 
 import com.aspectran.core.activity.Translet;
 import com.aspectran.core.component.bean.annotation.Autowired;
@@ -30,7 +30,7 @@ import com.aspectran.web.activity.response.RestResponse;
 
 import java.util.List;
 
-@Component("/examples/gs-rest-service")
+@Component("examples.gs-rest-service")
 @Bean
 public class CustomerAction {
 
@@ -53,7 +53,7 @@ public class CustomerAction {
     public RestResponse getCustomer(@Required Integer id) {
         Customer customer = repository.getCustomer(id);
         RestResponse response = new DefaultRestResponse();
-        if(customer != null) {
+        if (customer != null) {
             response.setData("customer", customer);
         } else {
             response.notFound();
@@ -66,8 +66,7 @@ public class CustomerAction {
     public RestResponse addCustomer(Translet translet, @Required Customer customer) {
         int id = repository.insertCustomer(customer);
         String resourceUri = translet.getRequestName() + "/" + id;
-        return new DefaultRestResponse(customer)
-                .created(resourceUri);
+        return new DefaultRestResponse(customer).created(resourceUri);
     }
 
     @RequestToPut("/customers/${id}")
@@ -75,7 +74,7 @@ public class CustomerAction {
     public RestResponse updateCustomer(@Required Customer customer) {
         boolean updated = repository.updateCustomer(customer);
         RestResponse response = new DefaultRestResponse();
-        if(updated) {
+        if (updated) {
             response.setData("customer", customer);
         } else {
             response.notFound();
@@ -88,7 +87,7 @@ public class CustomerAction {
     public RestResponse deleteCustomer(@Required Integer id) {
         boolean deleted = repository.deleteCustomer(id);
         RestResponse response = new DefaultRestResponse();
-        if(deleted) {
+        if (deleted) {
             response.setData("result", Boolean.TRUE);
         } else {
             response.notFound();
@@ -101,7 +100,7 @@ public class CustomerAction {
     public RestResponse updateAttributes(@Required Integer id, @Required Boolean approved) {
         boolean updated = repository.approve(id, approved);
         RestResponse response = new DefaultRestResponse();
-        if(updated) {
+        if (updated) {
             response.setData("result", Boolean.TRUE);
         } else {
             response.notFound();

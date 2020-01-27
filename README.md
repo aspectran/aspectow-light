@@ -1,5 +1,5 @@
-aspectran-aspectow
-===================
+aspectow-light
+==============
 
 Aspectow is a web application server on top of Aspectran 6, Undertow.
 
@@ -8,13 +8,13 @@ Aspectow is a web application server on top of Aspectran 6, Undertow.
 - Clone this repository
 
   ```bash
-  $ git clone https://github.com/aspectran/aspectran-aspectow.git
+  $ git clone https://github.com/aspectran/aspectow-light.git
   ```
 
 - Build with Maven
 
   ```bash
-  $ cd aspectran-aspectow
+  $ cd aspectow-light
   $ mvn clean package
   ```
 
