@@ -18,9 +18,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aspectran</groupId>
-    <artifactId>aspectow</artifactId>
+    <artifactId>aspectow-light</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <name>Aspectow</name>
+    <name>Aspectow Light</name>
     <description>Aspectow is a web application server on top of Aspectran 6, Undertow.</description>
     <contributors>
         <contributor>
