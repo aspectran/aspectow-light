@@ -9,8 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://aspectran.com/assets/css/aspectran.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
     <script src="https://aspectran.com/assets/js/modernizr-custom.js"></script>
-    <script src="https://aspectran.com/assets/js/jquery.js"></script>
-    <script src="https://aspectran.com/assets/js/fastclick.js"></script>
+    <script src="https://aspectran.com/assets/js/jquery.min.js"></script>
     <link rel="mask-icon" href="https://aspectran.com/assets/img/aspectran-logo.svg" color="#4B555A" />
     <link rel="apple-touch-icon" sizes="57x57" href="https://aspectran.com/assets/img/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="https://aspectran.com/assets/img/apple-icon-60x60.png" />
