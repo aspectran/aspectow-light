@@ -67,10 +67,10 @@
                 </div>
             </div>
             <div class="top-bar-left">
-                <ul class="dropdown menu" data-dropdown-menu data-close-on-click-inside="false">
+                <ul class="dropdown menu" data-dropdown-menu>
                     <li>
                         <a href="/examples/hello-world">Examples</a>
-                        <ul class="menu" data-submenu data-close-on-click-inside="false">
+                        <ul class="menu" data-submenu>
                             <li><a href="/examples/hello-world">Hello World</a></li>
                             <li><a href="/examples/gs-rest-service/">RESTful Web Service</a></li>
                             <li><a href="/examples/file-upload/">File Upload</a></li>
