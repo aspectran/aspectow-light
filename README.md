@@ -1,7 +1,7 @@
 Aspectow Light
 ==============
 
-It is a lightweight version that does not support the servlet specification and is suitable for building high performance REST API services.
+Aspectow Light is a lightweight version that does not support the servlet specification and is suitable for building high performance REST API services.
 JBoss's [Undertow](http://undertow.io) web server is built-in.
 
 ## Running Aspectow
