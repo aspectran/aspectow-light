@@ -1,26 +1,27 @@
-aspectow-light
+Aspectow Light
 ==============
 
-Aspectow is a web application server on top of Aspectran 6, Undertow.
+It is a lightweight version that does not support the servlet specification and is suitable for building high performance REST API services.
+JBoss's [Undertow](http://undertow.io) web server is built-in.
 
-## Running Aspectow under Aspectran Shell
+## Running Aspectow
 
 - Clone this repository
 
-  ```bash
+  ```sh
   $ git clone https://github.com/aspectran/aspectow-light.git
   ```
 
 - Build with Maven
 
-  ```bash
+  ```sh
   $ cd aspectow-light
   $ mvn clean package
   ```
 
-- Startup the Aspectran Shell
+- Run with Aspectran Shell
 
-  ```bash
+  ```sh
   $ cd app/bin
   $ ./shell.sh
   ```
