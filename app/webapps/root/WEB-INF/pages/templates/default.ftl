@@ -191,31 +191,8 @@
 </footer>
 <script src="https://aspectran.com/assets/js/foundation.min.js"></script>
 <script>
-    const path = location.pathname;
-    const a1 = $("#gnb-menu .top-bar-left .dropdown li a[href='" + path + "']").last();
-    if (a1.size() > 0) {
-        let arr = [];
-        arr.push({'name': a1.text(), 'href': null});
-        a1.parentsUntil(".dropdown > li:eq(0)").each(function() {
-            if ($(this).hasClass("menu")) {
-                var a2 = $(this).prev();
-                if (a2.is("a")) {
-                    arr.push({'name': a2.text(), 'href': a2.attr("href")||""});
-                }
-            }
-        });
-        arr.reverse();
-        for (let i in arr) {
-            let item = arr[i];
-            if (i < arr.length - 1) {
-                $(".breadcrumbs").append("<li><a href='" + item.href + "'>" + item.name + "</a></li>");
-            } else {
-                $(".breadcrumbs").append("<li><span class='show-for-sr'>Current: </span> <span class='current'>" + item.name + "</span></li>");
-            }
-        }
-    }
     $(document).foundation();
-    $(document).ready(function() {
+    $(function() {
         let $win = $(window);
         let $nav = $("#navigation");
         let navHeight = $("#masthead").height() - $nav.height();
@@ -243,9 +220,13 @@
                     }
                 } else {
                     if (!navFixed) {
-                        $nav.addClass("fixed");
-                        $nav.hide().fadeIn(500);
-                        navFixed = true;
+                        if ($nav.hasClass("immediate")) {
+                            $nav.removeClass("immediate")
+                        } else {
+                            $nav.addClass("fixed");
+                            $nav.hide().fadeIn(500);
+                            navFixed = true;
+                        }
                     }
                 }
                 lastScrollTop = scrollTop;
@@ -254,13 +235,13 @@
         }, 200);
         /* google search */
         $("form[name=google_quick_search]").submit(function(event) {
-            window.open('https://www.google.com/search?q=' + this.keyword.value + '+site:http%3A%2F%2F0.0.0.0%3A4000');
+            window.open('https://www.google.com/search?q=' + this.keyword.value + '+site:{{ site.url | cgi_escape }}');
             event.preventDefault();
         });
     });
 </script>
 <script>
-    $(document).ready(function() {
+    $(function() {
         $("#masthead h1, article h1, article h2, article h3, article h4, article h5, article h6").each(function(index, item) {
             let tagn = item.localName;
             let anchor = "top-of-page";
@@ -273,7 +254,7 @@
     });
 </script>
 <script>
-    $(document).ready(function() {
+    $(function() {
         $(".lazy-sticky").each(function() {
             const $win = $(window);
             const $this = $(this);
@@ -289,13 +270,7 @@
                 immediate = true;
                 let anchor = $(this).attr("anchor");
                 if (anchor !== "top-of-page") {
-                    setTimeout(function() {
-                        let offset = $("#" + anchor).offset();
-                        if (offset) {
-                            immediate = true;
-                            $win.scrollTop(offset.top - $("#navigation.fixed .top-bar").height()||0);
-                        }
-                    }, 300);
+                    $("#navigation").addClass("immediate");
                 }
             });
             $win.scroll(function() {
@@ -374,16 +349,43 @@
 <script>
     /* Creating custom :external selector */
     $.expr[':'].external = function(obj) {
-        return !obj.href.match(/^javascript\:/)
-            && !obj.href.match(/^mailto\:/)
+        return obj.href
+            && !obj.href.match(/^javascript:/)
+            && !obj.href.match(/^mailto:/)
             && (obj.hostname !== location.hostname);
     };
-    $(function(){
+    $(function() {
         /* Add 'external' CSS class to all external links */
         $('a:external').addClass('external');
         /* turn target into target=_blank for elements w external class */
         $(".external").attr('target','_blank');
     })
+</script>
+<script>
+    $(function() {
+        let menuitem = $("#gnb-menu .dropdown li a[href='" + location.pathname + "']").last();
+        if (menuitem.length > 0) {
+            let arr = [];
+            arr.push({'name': menuitem.text(), 'href': null});
+            menuitem.parentsUntil(".dropdown > li:eq(0)").each(function() {
+                if ($(this).hasClass("menu")) {
+                    let a2 = $(this).prev();
+                    if (a2.is("a")) {
+                        arr.push({'name': a2.text(), 'href': a2.attr("href") || ""});
+                    }
+                }
+            });
+            arr.reverse();
+            for (let i in arr) {
+                let item = arr[i];
+                if (i < arr.length - 1) {
+                    $(".breadcrumbs").append("<li><a href='" + item.href + "'>" + item.name + "</a></li>");
+                } else {
+                    $(".breadcrumbs").append("<li><span class='show-for-sr'>Current: </span> <span class='current'>" + item.name + "</span></li>");
+                }
+            }
+        }
+    });
 </script>
 </body>
 </html>
