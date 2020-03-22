@@ -27,4 +27,4 @@ JBoss's [Undertow](http://undertow.io) web server is built-in.
   $ ./shell.sh
   ```
 
-- Access in your browser at http://localhost:8080
+- Access in your browser at http://localhost:8081
