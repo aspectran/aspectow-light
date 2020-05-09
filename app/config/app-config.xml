@@ -36,7 +36,7 @@
         </settings>
     </aspect>
 
-    <append file="/config/undertow/tow-config.xml"/>
+    <append file="/config/server/undertow-config.xml"/>
     <append file="/config/shell/shell-config.xml" profile="!daemon"/>
     <append file="/config/web/web-config.xml"/>
 
