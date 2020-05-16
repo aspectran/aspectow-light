@@ -22,7 +22,7 @@
     </translet>
 
     <translet name="/echo">
-        <transform type="text">
+        <transform format="text">
             <template>${msg}</template>
         </transform>
     </translet>
