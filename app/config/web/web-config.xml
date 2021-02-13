@@ -16,7 +16,7 @@
                 <entry name="default_encoding">UTF-8</entry>
                 <entry name="number_format">0.####</entry>
             </item>
-            <item name="templateLoaderPath">/webapps/root/WEB-INF/pages</item>
+            <item name="templateLoaderPath">/webroot/WEB-INF/pages</item>
         </properties>
     </bean>
 

@@ -20,8 +20,12 @@
     <groupId>com.aspectran</groupId>
     <artifactId>aspectow-light</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Aspectow Light</name>
-    <description>Aspectow is a web application server on top of Aspectran 6, Undertow.</description>
+    <name>Aspectow Light Edition</name>
+    <description>
+        Aspectow Light Edition is a lightweight version with servlet specifications removed
+        from Aspectow, an all-in-one web application server based on Aspectran, and is suitable
+        for building high-performance REST API services. JBoss' Undertow web server is built in.
+    </description>
     <contributors>
         <contributor>
             <name>Juho Jeong</name>
@@ -33,7 +37,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aspectran.version>6.11.0</aspectran.version>
+        <aspectran.version>6.12.0-SNAPSHOT</aspectran.version>
         <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
     </properties>
@@ -114,7 +118,7 @@
                             </excludes>
                         </fileset>
                         <fileset>
-                            <directory>app/temp/_root</directory>
+                            <directory>app/temp/_webroot</directory>
                         </fileset>
                     </filesets>
                 </configuration>
@@ -164,6 +168,32 @@
             <groupId>com.aspectran</groupId>
             <artifactId>aspectran-with-undertow</artifactId>
             <version>${aspectran.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.undertow</groupId>
+                    <artifactId>undertow-websockets-jsr</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jasper</groupId>
+                    <artifactId>apache-jsp</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.taglibs</groupId>
+                    <artifactId>taglibs-standard-spec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.taglibs</groupId>
+                    <artifactId>taglibs-standard-impl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xalan</groupId>
+                    <artifactId>xalan</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xalan</groupId>
+                    <artifactId>serializer</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.aspectran</groupId>

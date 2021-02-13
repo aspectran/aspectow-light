@@ -1,8 +1,9 @@
-Aspectow Light
-==============
+Aspectow Light Edition
+======================
 
-Aspectow is an all-in-one web application server based on Aspectran.  
-Aspectow Light is a lightweight version that does not support the servlet specification and is suitable for building high performance REST API services.
+Aspectow Light Edition is a lightweight version with servlet specifications removed
+from Aspectow, an all-in-one web application server based on Aspectran, and is suitable
+for building high-performance REST API services.  
 JBoss's [Undertow](http://undertow.io) web server is built-in.
 
 ## Running Aspectow

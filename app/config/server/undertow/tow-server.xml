@@ -4,7 +4,7 @@
 <aspectran>
 
     <description>
-        An Aspectran configuration for Undertow Server.
+        Aspectran configuration to set up undertow server.
     </description>
 
     <environment>
@@ -44,80 +44,8 @@
             <item name="handler">
                 <bean class="io.undertow.server.handlers.GracefulShutdownHandler">
                     <arguments>
-                        <item>#{tow.hybridHttpHandler}</item>
+                        <item>#{tow.web.root.httpHybridHandler}</item>
                     </arguments>
-                </bean>
-            </item>
-        </properties>
-    </bean>
-
-    <bean id="tow.resourceManager" class="com.aspectran.undertow.server.resource.TowResourceManager" scope="prototype">
-        <properties>
-            <item name="base">/webapps/root</item>
-        </properties>
-    </bean>
-
-    <bean id="tow.hybridHttpHandler" class="com.aspectran.undertow.server.http.HybridHttpHandlerFactoryBean" scope="prototype">
-        <properties>
-            <item name="towServer">#{tow.server}</item>
-            <item name="resourceManager">#{tow.resourceManager}</item>
-            <item name="staticResourceHandler">#{tow.staticResourceHandler}</item>
-            <item name="sessionManager">#{tow.sessionManger}</item>
-            <item name="sessionConfig">
-                <bean class="io.undertow.server.session.SessionCookieConfig"/>
-            </item>
-            <item name="outerHandlerChainWrappers" type="array">
-                <value>#{tow.encodingHandlerWrapper}</value>
-                <value>#{tow.accessLogHandlerWrapper}</value>
-            </item>
-        </properties>
-    </bean>
-
-    <bean id="tow.staticResourceHandler" class="com.aspectran.undertow.server.resource.StaticResourceHandler"
-          initMethod="autoDetect" scope="prototype">
-        <arguments>
-            <item>#{tow.resourceManager}</item>
-        </arguments>
-        <properties>
-            <item name="resourcePathPatterns">
-                <bean class="com.aspectran.undertow.server.resource.ResourcePathPatterns">
-                    <arguments>
-                        <item>
-                            +: /favicon.ico
-                            +: /robots.txt
-                            +: /ads.txt
-                        </item>
-                    </arguments>
-                </bean>
-            </item>
-        </properties>
-    </bean>
-
-    <bean id="tow.sessionManger" class="com.aspectran.undertow.server.session.TowSessionManager" scope="prototype">
-        <properties>
-            <item name="sessionManagerConfig">
-                <bean class="com.aspectran.core.context.config.SessionManagerConfig">
-                    <arguments>
-                        <item>
-                            workerName: n0
-                            maxSessions: 99999
-                            maxIdleSeconds: 1800
-                            evictionIdleSeconds: 900
-                            scavengingIntervalSeconds: 600
-                            removeUnloadableSessions: true
-                            clusterEnabled: false
-                        </item>
-                    </arguments>
-                </bean>
-            </item>
-            <item name="sessionStoreFactory">
-                <bean class="com.aspectran.core.component.session.FileSessionStoreFactory">
-                    <properties>
-                        <item name="storeDir">/temp/sessions/undertow</item>
-                        <item name="nonPersistentAttributes" type="array">
-                            <value>io.undertow.websocket.current-connections</value>
-                        </item>
-                    </properties>
                 </bean>
             </item>
         </properties>
