@@ -37,7 +37,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aspectran.version>6.12.0-SNAPSHOT</aspectran.version>
+        <aspectran.version>7.0.0-SNAPSHOT</aspectran.version>
         <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
     </properties>
@@ -170,28 +170,16 @@
             <version>${aspectran.version}</version>
             <exclusions>
                 <exclusion>
+                    <groupId>jakarta.websocket</groupId>
+                    <artifactId>jakarta.websocket-api</artifactId>
+                </exclusion>
+                <exclusion>
                     <groupId>io.undertow</groupId>
-                    <artifactId>undertow-websockets-jsr</artifactId>
+                    <artifactId>undertow-websockets-jsr-jakartaee9</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.mortbay.jasper</groupId>
                     <artifactId>apache-jsp</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.taglibs</groupId>
-                    <artifactId>taglibs-standard-spec</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.taglibs</groupId>
-                    <artifactId>taglibs-standard-impl</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>xalan</groupId>
-                    <artifactId>xalan</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>xalan</groupId>
-                    <artifactId>serializer</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
