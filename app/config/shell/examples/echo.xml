@@ -8,6 +8,14 @@
         and attributes directly to the console.
     </description>
 
+    <translet name="echo0">
+        <description style="apon">
+            |
+            |   No response.
+            |
+        </description>
+    </translet>
+
     <translet name="echo1">
         <description style="apon">
             |
