@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package app.demo.examples.upload;
+package aspectow.demo.examples.upload;
 
 import com.aspectran.core.component.bean.annotation.NonSerializable;
 import com.aspectran.core.util.ToStringBuilder;
