@@ -1,19 +1,4 @@
-/*
- * Copyright (c) 2008-2022 The Aspectran Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package app.demo.examples.upload;
+package aspectow.demo.examples.upload;
 
 import com.aspectran.core.activity.Translet;
 import com.aspectran.core.activity.request.FileParameter;
@@ -63,15 +48,18 @@ public class SimpleFileUploadActivity {
     private void addUploadedFile(UploadedFile uploadedFile) {
         synchronized (uploadedFiles) {
             uploadedFiles.put(uploadedFile.getKey(), uploadedFile);
-            logger.debug("Uploaded File " + uploadedFile);
-
+            if (logger.isDebugEnabled()) {
+                logger.debug("Uploaded File " + uploadedFile);
+            }
             if (uploadedFiles.size() > this.maxFiles) {
                 Iterator<String> it = uploadedFiles.keySet().iterator();
                 int cnt = uploadedFiles.size() - this.maxFiles;
                 while (cnt-- > 0) {
                     if (it.hasNext()) {
                         UploadedFile removedFile = uploadedFiles.remove(it.next());
-                        logger.debug("Remove Old File " + removedFile);
+                        if (logger.isDebugEnabled()) {
+                            logger.debug("Remove Old File " + removedFile);
+                        }
                     }
                 }
             }
@@ -87,31 +75,30 @@ public class SimpleFileUploadActivity {
     @RequestToPost("/files")
     @Transform(FormatType.JSON)
     @Action("files")
-    public Collection<UploadedFile> upload(Translet translet) throws IOException {
+    public List<UploadedFile> upload(Translet translet) throws IOException {
         FileParameter fileParameter = translet.getFileParameter("file");
-        if (fileParameter != null) {
-            String key = UUID.randomUUID().toString();
-            String ext = FilenameUtils.getExtension(fileParameter.getFileName());
-            if (StringUtils.hasLength(ext)) {
-                key += "." + ext.toLowerCase();
-            }
-            UploadedFile uploadedFile = new UploadedFile();
-            uploadedFile.setKey(key);
-            uploadedFile.setFileName(fileParameter.getFileName());
-            uploadedFile.setFileSize(fileParameter.getFileSize());
-            uploadedFile.setHumanFileSize(StringUtils.convertToHumanFriendlyByteSize(fileParameter.getFileSize()));
-            uploadedFile.setFileType((fileParameter.getContentType()));
-            uploadedFile.setUrl("/examples/file-upload/files/" + key);
-            uploadedFile.setBytes(fileParameter.getBytes());
-
-            addUploadedFile(uploadedFile);
-
-            List<UploadedFile> files = new ArrayList<>();
-            files.add(uploadedFile);
-            return files;
-        } else {
+        if (fileParameter == null) {
             return null;
         }
+        String key = UUID.randomUUID().toString();
+        String ext = FilenameUtils.getExtension(fileParameter.getFileName());
+        if (StringUtils.hasLength(ext)) {
+            key += "." + ext.toLowerCase();
+        }
+        UploadedFile uploadedFile = new UploadedFile();
+        uploadedFile.setKey(key);
+        uploadedFile.setFileName(fileParameter.getFileName());
+        uploadedFile.setFileSize(fileParameter.getFileSize());
+        uploadedFile.setHumanFileSize(StringUtils.convertToHumanFriendlyByteSize(fileParameter.getFileSize()));
+        uploadedFile.setFileType((fileParameter.getContentType()));
+        uploadedFile.setUrl("/examples/file-upload/files/" + key);
+        uploadedFile.setBytes(fileParameter.getBytes());
+
+        addUploadedFile(uploadedFile);
+
+        List<UploadedFile> files = new ArrayList<>();
+        files.add(uploadedFile);
+        return files;
     }
 
     @RequestToGet("/files/${key}")
