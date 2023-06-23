@@ -58,7 +58,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/terminal/">Terminal</a>
+                        <a href="/interpreter/">Terminal</a>
                     </li>
                 </ul>
             </div>
@@ -162,7 +162,7 @@
         <div class="grid-container">
             <nav class="grid-x b30">
                 <section id="subfooter-left" class="medium-6 cell credits">
-                    <p>Copyright © 2008-2022 The Aspectran Project</p>
+                    <p>Copyright © 2008-2023 The Aspectran Project</p>
                 </section>
                 <section id="subfooter-right" class="medium-6 cell social-icons">
                 </section>
