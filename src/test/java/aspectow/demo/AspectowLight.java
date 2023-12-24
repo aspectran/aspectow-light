@@ -15,11 +15,8 @@
  */
 package aspectow.demo;
 
-import com.aspectran.core.util.ResourceUtils;
-import com.aspectran.shell.AspectranShell;
-import com.aspectran.shell.console.ShellConsole;
 import com.aspectran.shell.jline.JLineAspectranShell;
-import com.aspectran.shell.jline.console.JLineShellConsole;
+import com.aspectran.utils.ResourceUtils;
 
 import java.io.File;
 import java.io.IOException;
