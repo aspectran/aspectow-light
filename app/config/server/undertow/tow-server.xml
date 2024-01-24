@@ -44,14 +44,14 @@
             <item name="handler">
                 <bean class="io.undertow.server.handlers.GracefulShutdownHandler">
                     <arguments>
-                        <item>#{tow.web.root.httpHybridHandler}</item>
+                        <item>#{tow.context.root.httpHybridHandler}</item>
                     </arguments>
                 </bean>
             </item>
         </properties>
     </bean>
 
-    <bean id="tow.encodingHandlerWrapper" class="com.aspectran.undertow.server.encoding.EncodingHandlerWrapper"
+    <bean id="tow.server.encodingHandlerWrapper" class="com.aspectran.undertow.server.encoding.EncodingHandlerWrapper"
           scope="prototype">
         <properties>
             <item name="contentEncodingProviders" type="array">
@@ -73,7 +73,7 @@
         </properties>
     </bean>
 
-    <bean id="tow.accessLogHandlerWrapper" class="com.aspectran.undertow.server.accesslog.AccessLogHandlerWrapper"
+    <bean id="tow.server.accessLogHandlerWrapper" class="com.aspectran.undertow.server.accesslog.AccessLogHandlerWrapper"
           scope="prototype">
         <properties>
             <item name="formatString">combined</item>
