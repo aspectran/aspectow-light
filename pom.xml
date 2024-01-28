@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aspectran</groupId>
     <artifactId>aspectow-light</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>8.0.0-SNAPSHOT</version>
     <name>Aspectow Light Edition</name>
     <description>
         Aspectow Light Edition is a lightweight version with servlet specifications removed
