@@ -4,39 +4,79 @@
 <aspectran>
 
     <description>
-        Aspectran configuration for setting root web application.
+        Aspectran configuration for setting up an Undertow server.
     </description>
 
     <environment>
         <properties>
-            <item name="tow.context.path">/webroot</item>
-            <item name="tow.context.scratch_dir">/work/_webroot</item>
+            <item name="tow.server.startup" valueType="boolean">true</item>
+            <item name="tow.server.listener.http.port" valueType="int">8081</item>
+            <item name="tow.server.listener.http.host">0.0.0.0</item>
+            <item name="tow.server.baseDir">/webroot</item>
         </properties>
     </environment>
 
-    <bean id="tow.context.hybridHttpHandler" class="com.aspectran.undertow.server.http.HybridHttpHandlerFactoryBean"
-          scope="prototype">
+    <bean id="tow.server" class="com.aspectran.undertow.server.DefaultTowServer">
         <properties>
-            <item name="towServer">#{tow.server}</item>
-            <item name="resourceManager">
-                <bean class="com.aspectran.undertow.server.resource.TowResourceManager">
+            <item name="autoStart">%{tow.server.startup}</item>
+            <item name="httpListeners" type="array">
+                <bean class="com.aspectran.undertow.server.HttpListenerConfig">
                     <properties>
-                        <item name="base">%{tow.context.path}</item>
+                        <item name="port" valueType="int">%{tow.server.listener.http.port}</item>
+                        <item name="host">%{tow.server.listener.http.host}</item>
                     </properties>
                 </bean>
             </item>
-            <item name="sessionManager">#{tow.context.sessionManager}</item>
-            <item name="sessionConfig">
-                <bean class="io.undertow.server.session.SessionCookieConfig"/>
+            <item name="serverOptions">
+                <bean class="com.aspectran.undertow.server.TowOptions">
+                    <properties>
+                        <item name="decodeUrl" valueType="boolean">true</item>
+                        <item name="urlCharset">UTF-8</item>
+                    </properties>
+                </bean>
             </item>
-            <item name="outerHandlerChainWrappers" type="array">
-                <value>#{tow.server.encodingHandlerWrapper}</value>
-                <value>#{tow.server.accessLogHandlerWrapper}</value>
+            <item name="workerOptions">
+                <bean class="com.aspectran.undertow.server.TowOptions">
+                    <properties>
+                        <item name="workerName">TOW</item>
+                    </properties>
+                </bean>
+            </item>
+            <item name="handler">
+                <bean class="io.undertow.server.handlers.GracefulShutdownHandler">
+                    <arguments>
+                        <item>#{tow.server.requestHandler}</item>
+                    </arguments>
+                </bean>
             </item>
         </properties>
     </bean>
 
-    <bean id="tow.context.sessionManager" class="com.aspectran.undertow.server.session.TowSessionManager"
+    <bean id="tow.server.requestHandler"
+          class="com.aspectran.undertow.server.handler.DirectRequestHandlerFactoryBean"
+          scope="prototype">
+        <properties>
+            <item name="towServer">#{tow.server}</item>
+            <item name="resourceManager">
+                <bean class="com.aspectran.undertow.server.handler.resource.TowResourceManager">
+                    <properties>
+                        <item name="base">%{tow.server.baseDir}</item>
+                    </properties>
+                </bean>
+            </item>
+            <item name="sessionManager">#{tow.server.sessionManager}</item>
+            <item name="sessionConfig">
+                <bean class="io.undertow.server.session.SessionCookieConfig"/>
+            </item>
+            <item name="outerHandlerChainWrappers" type="array">
+                <value>#{tow.server.handler.encodingHandlerWrapper}</value>
+                <value>#{tow.server.handler.accessLogHandlerWrapper}</value>
+            </item>
+        </properties>
+    </bean>
+
+    <bean id="tow.server.sessionManager"
+          class="com.aspectran.undertow.server.session.TowSessionManager"
           scope="prototype">
         <properties>
             <item name="sessionManagerConfig">
@@ -66,7 +106,8 @@
         </properties>
     </bean>
 
-    <bean id="tow.server.encodingHandlerWrapper" class="com.aspectran.undertow.server.encoding.EncodingHandlerWrapper"
+    <bean id="tow.server.handler.encodingHandlerWrapper"
+          class="com.aspectran.undertow.server.handler.encoding.EncodingHandlerWrapper"
           scope="prototype">
         <properties>
             <item name="contentEncodingProviders" type="array">
@@ -88,7 +129,8 @@
         </properties>
     </bean>
 
-    <bean id="tow.server.accessLogHandlerWrapper" class="com.aspectran.undertow.server.accesslog.AccessLogHandlerWrapper"
+    <bean id="tow.server.handler.accessLogHandlerWrapper"
+          class="com.aspectran.undertow.server.handler.accesslog.AccessLogHandlerWrapper"
           scope="prototype">
         <properties>
             <item name="formatString">combined</item>
