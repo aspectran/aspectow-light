@@ -53,7 +53,7 @@
     </bean>
 
     <bean id="tow.server.requestHandler"
-          class="com.aspectran.undertow.server.handler.DirectRequestHandlerFactoryBean"
+          class="com.aspectran.undertow.server.handler.LightRequestHandlerFactoryBean"
           scope="prototype">
         <properties>
             <item name="towServer">#{tow.server}</item>
