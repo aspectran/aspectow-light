@@ -51,7 +51,7 @@
         </properties>
     </bean>
 
-    <bean id="tow.server.encodingHandlerWrapper" class="com.aspectran.undertow.server.encoding.EncodingHandlerWrapper"
+    <bean id="tow.server.handler.encodingHandlerWrapper" class="com.aspectran.undertow.server.handler.encoding.EncodingHandlerWrapper"
           scope="prototype">
         <properties>
             <item name="contentEncodingProviders" type="array">
@@ -73,7 +73,8 @@
         </properties>
     </bean>
 
-    <bean id="tow.server.accessLogHandlerWrapper" class="com.aspectran.undertow.server.accesslog.AccessLogHandlerWrapper"
+    <bean id="tow.server.handler.accessLogHandlerWrapper"
+          class="com.aspectran.undertow.server.handler.accesslog.AccessLogHandlerWrapper"
           scope="prototype">
         <properties>
             <item name="formatString">combined</item>

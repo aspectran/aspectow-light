@@ -19,7 +19,7 @@
         <properties>
             <item name="towServer">#{tow.server}</item>
             <item name="resourceManager">
-                <bean class="com.aspectran.undertow.server.resource.TowResourceManager">
+                <bean class="com.aspectran.undertow.server.handler.resource.TowResourceManager">
                     <properties>
                         <item name="base">%{tow.context.root.path}</item>
                     </properties>
@@ -37,11 +37,12 @@
         </properties>
     </bean>
 
-    <bean id="tow.context.root.staticResourceHandler" class="com.aspectran.undertow.server.resource.StaticResourceHandler"
+    <bean id="tow.context.root.staticResourceHandler"
+          class="com.aspectran.undertow.server.resource.StaticResourceHandler"
           initMethod="autoDetect" scope="prototype">
         <arguments>
             <item>
-                <bean class="com.aspectran.undertow.server.resource.TowResourceManager">
+                <bean class="com.aspectran.undertow.server.handler.resource.TowResourceManager">
                     <properties>
                         <item name="base">%{tow.context.root.path}</item>
                     </properties>
@@ -63,7 +64,8 @@
         </properties>
     </bean>
 
-    <bean id="tow.context.root.sessionManager" class="com.aspectran.undertow.server.session.TowSessionManager"
+    <bean id="tow.context.root.sessionManager"
+          class="com.aspectran.undertow.server.session.TowSessionManager"
           scope="prototype">
         <properties>
             <item name="sessionManagerConfig">
