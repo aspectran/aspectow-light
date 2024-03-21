@@ -4,6 +4,5 @@
 <aspectran>
 
     <append file="/config/server/undertow/tow-server.xml"/>
-    <append file="/config/server/undertow/tow-context.xml"/>
 
 </aspectran>
