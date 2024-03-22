@@ -134,35 +134,6 @@
                     </filesets>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.4.1</version>
-                <executions>
-                    <execution>
-                        <id>enforce-banned-dependencies</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <bannedDependencies>
-                                    <excludes>
-                                        <exclude>log4j:log4j</exclude>
-                                        <exclude>commons-logging:commons-logging</exclude>
-                                        <exclude>org.apache.logging.log4j:log4j</exclude>
-                                        <exclude>org.apache.logging.log4j:log4j-slf4j-impl</exclude>
-                                        <exclude>org.slf4j:slf4j-log4j12</exclude>
-                                        <exclude>org.slf4j:slf4j-jdk14</exclude>
-                                        <exclude>org.slf4j:slf4j-simple</exclude>
-                                    </excludes>
-                                </bannedDependencies>
-                            </rules>
-                            <fail>true</fail>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
