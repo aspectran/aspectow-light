@@ -68,7 +68,7 @@
             <item name="sessionConfig">
                 <bean class="io.undertow.server.session.SessionCookieConfig"/>
             </item>
-            <item name="outerHandlerChainWrappers" type="array">
+            <item name="handlerChainWrappers" type="array">
                 <value>#{tow.server.handler.encodingHandlerWrapper}</value>
                 <value>#{tow.server.handler.accessLogHandlerWrapper}</value>
             </item>
