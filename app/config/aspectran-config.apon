@@ -82,7 +82,7 @@ shell: {
     }
     historyFile: /logs/history.log
     verbose: true
-    exposals: {
+    acceptables: {
         -: /**
     }
 }
@@ -108,14 +108,14 @@ daemon: {
     session: {
         enabled: true
     }
-    exposals: {
+    acceptables: {
         -: /**
     }
 }
 web: {
     defaultServletName: none
     trailingSlashRedirect: true
-    exposals: {
+    acceptables: {
         +: /**
         -: /favicon.ico
     }
