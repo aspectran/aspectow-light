@@ -167,7 +167,7 @@
                 </exclusion>
                 <exclusion>
                     <groupId>io.undertow</groupId>
-                    <artifactId>undertow-websockets-jsr-jakartaee9</artifactId>
+                    <artifactId>undertow-websockets-jsr</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.mortbay.jasper</groupId>
