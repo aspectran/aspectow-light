@@ -71,7 +71,7 @@ shell: {
         com.aspectran.shell.command.builtins.QuitCommand
     ]
     session: {
-        workerName: sn0
+        workerName: shell
         maxActiveSessions: 1
         maxIdleSeconds: 1800
         scavengingIntervalSeconds: 600
@@ -116,8 +116,8 @@ web: {
     uriDecoding: utf-8
     defaultServletName: none
     trailingSlashRedirect: true
+    legacyHeadHandling: false
     acceptable: {
         +: /**
-        -: /favicon.ico
     }
 }
