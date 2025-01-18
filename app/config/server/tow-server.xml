@@ -42,35 +42,26 @@
                     </properties>
                 </bean>
             </item>
-            <item name="handler">
-                <bean class="io.undertow.server.handlers.GracefulShutdownHandler">
-                    <arguments>
-                        <item>#{tow.server.requestHandler}</item>
-                    </arguments>
-                </bean>
-            </item>
-        </properties>
-    </bean>
-
-    <bean id="tow.server.requestHandler"
-          class="com.aspectran.undertow.server.handler.LightRequestHandlerFactoryBean"
-          scope="prototype">
-        <properties>
-            <item name="towServer">#{tow.server}</item>
-            <item name="resourceManager">
-                <bean class="com.aspectran.undertow.server.handler.resource.TowResourceManager">
+            <item name="requestHandlerFactory">
+                <bean class="com.aspectran.undertow.server.handler.LightRequestHandlerFactory">
                     <properties>
-                        <item name="base">%{tow.server.baseDir}</item>
+                        <item name="resourceManager">
+                            <bean class="com.aspectran.undertow.server.handler.resource.TowResourceManager">
+                                <properties>
+                                    <item name="base">%{tow.server.baseDir}</item>
+                                </properties>
+                            </bean>
+                        </item>
+                        <item name="sessionManager">#{tow.server.sessionManager}</item>
+                        <item name="sessionConfig">
+                            <bean class="io.undertow.server.session.SessionCookieConfig"/>
+                        </item>
+                        <item name="handlerChainWrappers" type="array">
+                            <value>#{tow.server.handler.accessLogHandlerWrapper}</value>
+                            <value>#{tow.server.handler.encodingHandlerWrapper}</value>
+                        </item>
                     </properties>
                 </bean>
-            </item>
-            <item name="sessionManager">#{tow.server.sessionManager}</item>
-            <item name="sessionConfig">
-                <bean class="io.undertow.server.session.SessionCookieConfig"/>
-            </item>
-            <item name="handlerChainWrappers" type="array">
-                <value>#{tow.server.handler.accessLogHandlerWrapper}</value>
-                <value>#{tow.server.handler.encodingHandlerWrapper}</value>
             </item>
         </properties>
     </bean>

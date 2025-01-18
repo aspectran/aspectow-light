@@ -106,6 +106,7 @@ daemon: {
         com.aspectran.daemon.command.builtins.QuitCommand
     ]
     session: {
+        workerName: daemon
         enabled: true
     }
     acceptable: {
@@ -114,9 +115,7 @@ daemon: {
 }
 web: {
     uriDecoding: utf-8
-    defaultServletName: none
     trailingSlashRedirect: true
-    legacyHeadHandling: false
     acceptable: {
         +: /**
     }
