@@ -59,7 +59,7 @@
 </div>
 
 <script>
-  const BASE_PATH = "${pageContext.request.contextPath}/examples";
+  const BASE_PATH = "/examples";
   $(function() {
     $("select[name=customerList]").change(function() {
       $("#details form, #cust-no").stop(true).fadeOut(300);
