@@ -34,7 +34,7 @@
               <input type="number" name="age" min="1" max="199" maxlength="3" oninput="if (this.value.length >= this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
             </label>
             <legend>
-              Approval Status:
+              Approval State:
               <input type="radio" name="approved" id="approved" value="Y" required><label for="approved">Approved</label>
               <input type="radio" name="approved" id="denied" value="N" required><label for="denied">Denied</label>
             </legend>
