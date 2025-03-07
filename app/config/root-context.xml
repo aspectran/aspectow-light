@@ -51,6 +51,6 @@
 
     <append file="/config/server/tow-server.xml"/>
     <append file="/config/shell/shell-context.xml" profile="!daemon"/>
-    <append resource="web/web-context.xml"/>
+    <append resource="aspectow/demo/web-context.xml"/>
 
 </aspectran>

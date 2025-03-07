@@ -42,10 +42,10 @@
         </settings>
     </aspect>
 
-    <append resource="web/home/main.xml"/>
-    <append resource="web/examples/hello-world.xml"/>
-    <append resource="web/examples/gs-rest-service.xml" profile="!daemon"/>
-    <append resource="web/examples/file-upload.xml" profile="!daemon"/>
-    <append resource="web/terminal/translet-interpreter.xml" profile="!daemon"/>
+    <append resource="aspectow/demo/home/main.xml"/>
+    <append resource="aspectow/demo/examples/hello-world.xml"/>
+    <append resource="aspectow/demo/examples/gs-rest-service.xml" profile="!daemon"/>
+    <append resource="aspectow/demo/examples/file-upload.xml" profile="!daemon"/>
+    <append resource="aspectow/demo/terminal/translet-interpreter.xml" profile="!daemon"/>
 
 </aspectran>
