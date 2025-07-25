@@ -6,7 +6,7 @@
     <meta name="google" content="notranslate">
     <title>${page.title!"Aspectran Demo Site"}</title>
     <meta name="description" content="${page.description!"Welcome to Aspectran Demo"}" />
-    <link rel="stylesheet" type="text/css" href="https://assets.aspectran.com/foundation/css/aspectran.css" />
+    <link rel="stylesheet" type="text/css" href="https://assets.aspectran.com/foundation@6.9.0/css/aspectran.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
     <script src="https://assets.aspectran.com/js/modernizr-custom.js"></script>
     <script src="https://aspectran.com/assets/js/jquery.min.js"></script>
