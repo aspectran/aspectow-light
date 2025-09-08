@@ -138,13 +138,6 @@
                         <li class="icon-github"> <a href="https://github.com/aspectran" target="_blank" title="" class="external">GitHub</a></li>
                     </ul>
                 </div>
-                <div class="small-6 medium-3 large-3 cell">
-                    <h5>Support</h5>
-                    <ul class="no-bullet">
-                        <li><a href="https://aspectran.com/en/support/faq/" title="FAQ">FAQ</a></li>
-                        <li><a href="https://aspectran.com/en/support/contact/" title="Contact">Contact</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
