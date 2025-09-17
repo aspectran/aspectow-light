@@ -126,10 +126,10 @@
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
                 <div class="medium-2 large-1 cell hide-for-small-only t5">
-                    <h5><a class="logo" href="https://aspectran.com/en/aspectran/" title="Aspectran"><img src="https://assets.aspectran.com/img/aspectran-logo-grey-x100.png" width="100" height="100" alt="Aspectran" title="Aspectran"/></a></h5>
+                    <h5><a class="logo" href="https://aspectran.com/aspectran/" title="Aspectran"><img src="https://assets.aspectran.com/img/aspectran-logo-grey-x100.png" width="100" height="100" alt="Aspectran" title="Aspectran"/></a></h5>
                 </div>
                 <div class="medium-4 large-4 cell">
-                    <a href="https://aspectran.com/en/aspectran/"><h5>About Aspectran</h5></a>
+                    <a href="https://aspectran.com/aspectran/"><h5>About Aspectran</h5></a>
                     <p><a href="">Aspectran is a lightweight, high‑performance framework for building both simple shell applications and large enterprise web services on the JVM. </a></p>
                 </div>
                 <div class="small-6 medium-3 large-3 large-offset-1 cell">
