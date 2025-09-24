@@ -19,7 +19,7 @@
     <translet name="echo1">
         <description style="apon">
             |
-            |   It accepts parameters and print them to the console.
+            |   It accepts parameters and prints them to the console.
             |
         </description>
         <parameters>
@@ -47,7 +47,7 @@
     <translet name="echo2">
         <description style="apon">
             |
-            |   It accepts parameters and print them to the console.
+            |   It accepts parameters and prints them to the console.
             |
         </description>
         <parameters>
