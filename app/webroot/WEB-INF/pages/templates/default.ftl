@@ -8,7 +8,6 @@
     <meta name="description" content="${page.description!"Welcome to Aspectran Demo"}" />
     <link rel="stylesheet" type="text/css" href="https://assets.aspectran.com/foundation@6.9.0/css/aspectran.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
-    <script src="https://assets.aspectran.com/js/modernizr-custom.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="mask-icon" href="https://assets.aspectran.com/img/aspectran-logo.svg" color="#4B555A" />
     <link rel="apple-touch-icon" sizes="57x57" href="https://assets.aspectran.com/img/apple-icon-57x57.png" />
