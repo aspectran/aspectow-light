@@ -5,47 +5,46 @@
 
     <description>
         Aspectran configuration to configure the web environment.
-        Note that names of translets that match the request URI always start with a forward slash (/).
     </description>
 
-    <bean id="freemarkerConfiguration" class="com.aspectran.freemarker.ConfigurationFactoryBean">
-        <properties>
-            <item name="freemarkerSettings" type="properties">
-                <entry name="incompatible_improvements">2.3.23</entry>
-                <entry name="template_exception_handler">rethrow</entry>
-                <entry name="default_encoding">UTF-8</entry>
-                <entry name="number_format">0.####</entry>
-            </item>
-            <item name="templateLoaderPath">/webroot/WEB-INF/pages</item>
-        </properties>
+    <bean id="thymeleaf" class="com.aspectran.thymeleaf.ThymeleafTemplateEngine">
+        <argument>
+            <bean class="com.aspectran.thymeleaf.TemplateEngineFactoryBean">
+                <property name="templateResolvers" type="set">
+                    <bean class="com.aspectran.thymeleaf.template.FileTemplateResolver">
+                        <property name="prefix">#{basePath}/webapps/root/WEB-INF/thymeleaf/</property>
+                        <property name="suffix">.html</property>
+                        <property name="templateMode">HTML</property>
+                        <property name="cacheable" valueType="boolean">false</property>
+                    </bean>
+                </property>
+                <property type="set" name="dialects">
+                    <bean class="nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect"/>
+                </property>
+            </bean>
+        </argument>
     </bean>
 
-    <bean id="freemarkerViewDispatcher" class="com.aspectran.freemarker.view.FreeMarkerViewDispatcher">
+    <bean id="thymeleafViewDispatcher" class="com.aspectran.thymeleaf.view.ThymeleafViewDispatcher">
         <description>
-            Register a Freemarker View Dispatcher.
+            Register a Thymeleaf View Dispatcher.
         </description>
-        <arguments>
-            <item>#{freemarkerConfiguration}</item>
-        </arguments>
-        <properties>
-            <item name="suffix">.ftl</item>
-        </properties>
+        <argument>#{thymeleaf}</argument>
     </bean>
 
-    <aspect id="webTransletSettings">
-        <description>
-            This aspect is for injecting default settings into translets running in the web environment.
-        </description>
+    <aspect id="thymeleafTransletSettings">
+        <joinpoint>
+            pointcut: {
+                +: /**
+            }
+        </joinpoint>
         <settings>
             <setting name="characterEncoding" value="utf-8"/>
-            <setting name="viewDispatcher" value="freemarkerViewDispatcher"/>
+            <setting name="viewDispatcher" value="thymeleafViewDispatcher"/>
+            <setting name="proxyProtocolAware" value="true"/>
         </settings>
     </aspect>
 
     <append resource="aspectow/demo/home/main.xml"/>
-    <append resource="aspectow/demo/examples/hello-world.xml"/>
-    <append resource="aspectow/demo/examples/gs-rest-service.xml" profile="!daemon"/>
-    <append resource="aspectow/demo/examples/file-upload.xml" profile="!daemon"/>
-    <append resource="aspectow/demo/terminal/translet-interpreter.xml" profile="!daemon"/>
 
 </aspectran>
