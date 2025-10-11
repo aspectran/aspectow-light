@@ -15,7 +15,7 @@ It is built on the Aspectran framework and includes JBoss Undertow, a high-perfo
 ## Requirements
 
 - Java 21 or later
-- Maven 3.6.3 or later
+- Maven 3.9.4 or later
 
 ## Building from Source
 
