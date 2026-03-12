@@ -44,6 +44,6 @@
     </aspect>
 
     <append file="/config/server/tow-server.xml"/>
-    <append resource="aspectow/demo/web-context.xml"/>
+    <append resource="aspectow/demo/web-rules.xml"/>
 
 </aspectran>
